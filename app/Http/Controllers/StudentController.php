@@ -110,6 +110,31 @@ class StudentController extends Controller
         return redirect()->route('students.index');
     }
 
+    // Mostrar el formulario para matricular estudiante en modulo
+    public function editModules($id): View
+    {
+        $url = env('URL_SERVER_API');
+        $student = $this->fetchDataFromApi($url.'/students/'.$id);
+        $modules = $this->fetchDataFromApi($url.'/modules');
+
+        return view('Students.assign-modules', compact('student', 'modules'));
+    }
+
+    // Actualizar la matricula de estudiante en modulos
+    public function updateModules(Request $request, $id): RedirectResponse
+    {
+        $request->validate([
+            'module_ids' => 'required|array|min:1',
+            'module_ids.*' => 'required|integer|distinct',
+        ]);
+
+        $url = env('URL_SERVER_API');
+        Http::put($url.'/students/'.$id.'/modules', $request->only('module_ids'))
+            ->throw();
+
+        return redirect()->route('students.show', $id);
+    }
+
     // Eliminar un estudiante:
     public function destroy($id): RedirectResponse
     {

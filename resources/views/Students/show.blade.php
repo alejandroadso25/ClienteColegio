@@ -33,6 +33,7 @@
 @endforelse
 
 <a href="{{ route('students.edit', $student['id']) }}">Editar</a>
+<a href="{{ route('students.modules.edit', $student['id']) }}">Matricular en módulos</a>
 <a href="{{ route('students.index') }}">Volver al listado</a>
 
 {{-- Modulos que cursa el estudiante --}}

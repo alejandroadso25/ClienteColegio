@@ -46,6 +46,9 @@ Route::get('students/{id}/edit', [StudentController::class, 'edit'])->name('stud
 Route::get('students/{id}', [StudentController::class, 'show'])->name('students.show');
 Route::put('students/{id}', [StudentController::class, 'update'])->name('students.update');
 Route::delete('students/{id}', [StudentController::class, 'destroy'])->name('students.destroy');
+// Rutas para matricular estudiantes en modulos:
+Route::get('students/{id}/modules/edit', [StudentController::class, 'editModules'])->name('students.modules.edit');
+Route::put('students/{id}/modules', [StudentController::class, 'updateModules'])->name('students.modules.update');
 
 // Rutas para asignar profesores a modulos:
 Route::get('modules/{id}/teachers/edit', [ModuleController::class, 'editTeachers'])->name('modules.teachers.edit'); // Ver formulario de asignación de profesores a un módulo
