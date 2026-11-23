@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ModuleController; // Importación del controlador de modulos
 use App\Http\Controllers\TeacherController; // Importación del controlador de profesores
+use App\Http\Controllers\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,3 +37,12 @@ Route::get('teachers/{id}/edit', [TeacherController::class, 'edit'])->name('teac
 Route::get('teachers/{id}', [TeacherController::class, 'show'])->name('teachers.show'); // Ver profesor especifico
 Route::put('teachers/{id}', [TeacherController::class, 'update'])->name('teachers.update'); // Editar profesor
 Route::delete('teachers/{id}', [TeacherController::class, 'destroy'])->name('teachers.destroy'); // Eliminar profesor
+
+// Rutas para estudiante:
+Route::get('students', [StudentController::class, 'index'])->name('students.index');
+Route::get('students/create', [StudentController::class, 'create'])->name('students.create');
+Route::post('students', [StudentController::class, 'store'])->name('students.store');
+Route::get('students/{id}/edit', [StudentController::class, 'edit'])->name('students.edit');
+Route::get('students/{id}', [StudentController::class, 'show'])->name('students.show');
+Route::put('students/{id}', [StudentController::class, 'update'])->name('students.update');
+Route::delete('students/{id}', [StudentController::class, 'destroy'])->name('students.destroy');
