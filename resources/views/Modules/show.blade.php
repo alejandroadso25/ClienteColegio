@@ -15,3 +15,11 @@
 @empty
     <p>No hay profesores asignados a este módulo.</p>
 @endforelse
+
+<h2>Alumnos matriculados</h2>
+
+@forelse ($module['students'] ?? [] as $student)
+    <p>{{ $student['nombre'] }} {{ $student['apellido'] }}</p>
+@empty
+    <p>No hay alumnos matriculados en este módulo.</p>
+@endforelse
