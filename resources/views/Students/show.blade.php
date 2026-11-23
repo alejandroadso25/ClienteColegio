@@ -17,19 +17,20 @@
 <h2>Alumnos que representa</h2>
 
 @forelse ($student['alumnos_delegados'] ?? [] as $alumno)
-    <p>{{ $alumno['nombre'] }} {{ $alumno['apellido'] }}</p>
+    <div>
+        <p>{{ $alumno['nombre'] }} {{ $alumno['apellido'] }}</p>
+
+        @if (!empty($alumno['imagen']))
+            <img src="{{ $alumno['imagen'] }}"
+                 alt="Imagen de {{ $alumno['nombre'] }}"
+                 width="100">
+        @else
+            <p>Este alumno no tiene imagen.</p>
+        @endif
+    </div>
 @empty
     <p>No representa a otros alumnos.</p>
 @endforelse
-
-@if (!empty($student['imagen']))
-    <p><strong>Imagen:</strong></p>
-    <img src="{{ $student['imagen'] }}"
-         alt="Imagen de {{ $student['nombre'] }}"
-         width="200">
-@else
-    <p><strong>Imagen:</strong> Sin imagen</p>
-@endif
 
 <a href="{{ route('students.edit', $student['id']) }}">Editar</a>
 <a href="{{ route('students.index') }}">Volver al listado</a>
