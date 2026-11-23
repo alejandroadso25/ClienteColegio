@@ -6,3 +6,12 @@
 
 <a href="{{ route('modules.edit', $module['id']) }}">Editar</a>
 <a href="{{ route('modules.index') }}">Volver al listado</a>
+
+{{---Profesores asignados al modulo --}}
+<h2>Profesores asignados</h2>
+
+@forelse ($module['teachers'] ?? [] as $teacher)
+    <p>{{ $teacher['nombre'] }} {{ $teacher['apellido'] }}</p>
+@empty
+    <p>No hay profesores asignados a este módulo.</p>
+@endforelse

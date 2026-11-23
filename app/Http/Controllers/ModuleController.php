@@ -87,4 +87,30 @@ class ModuleController extends Controller
 
         return redirect()->route('modules.index');
     }
+
+    // Metodo para mostrar formulario para asignar profesores a un modulo:
+    public function editTeachers($id): View
+    {   
+        $url = env('URL_SERVER_API');
+        $module = $this->fetchDataFromApi($url.'/modules/'.$id);
+        $teachers = $this->fetchDataFromApi($url.'/teachers');
+        
+        return view('Modules.assign-teachers', compact('module', 'teachers'));
+    }
+    
+    // Metodo para actualizar profesores asignados a un modulo:
+    public function updateTeachers(Request $request, $id): RedirectResponse
+    {
+        $request->validate([
+            'teacher_ids' => 'required|array|min:1',
+            'teacher_ids.*' => 'required|integer|distinct',
+        ]);
+
+        $url = env('URL_SERVER_API');
+        Http::put($url.'/modules/'.$id.'/teachers', $request->only('teacher_ids'))
+        ->throw();
+
+        return redirect()->route('modules.show', $id);
+    }
+
 }

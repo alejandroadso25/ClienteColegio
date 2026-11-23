@@ -20,6 +20,7 @@
                 <td>
                     <a href="{{ route('modules.show', $module['id']) }}">Ver</a>
                     <a href="{{ route('modules.edit', $module['id']) }}">Editar</a>
+                    <a href="{{ route('modules.teachers.edit', $module['id']) }}">Asignar profesores</a> {{-- Enlace para asignar profesores al módulo --}}
 
                     <form action="{{ route('modules.destroy', $module['id']) }}"
                           method="POST"
