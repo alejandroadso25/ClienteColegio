@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http; // Importación para usar clases
 use Illuminate\Contracts\View\View; // Importación para solicitudes HTTP
-use Illuminate\Http\RedirectResponse; // Importación que permite respuesta de redirección
+use Illuminate\Http\RedirectResponse; // Importación que redirige respuestas al usuario
 
 class ModuleController extends Controller
 {
@@ -14,8 +14,6 @@ class ModuleController extends Controller
         $response = Http::get($url);
         return $response->json();
     }
-
-    
 
     // Listar modulos en formulario:
     public function index(): View
